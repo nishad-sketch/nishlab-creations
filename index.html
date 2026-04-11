@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NishLab Creations — CAD | CAM | CAE Training</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060a0f;
+    --bg2: #0c1219;
+    --panel: #0f1820;
+    --accent: #00c8ff;
+    --accent2: #ff6b00;
+    --accent3: #00ff88;
+    --text: #d4e4f0;
+    --muted: #5a7a8a;
+    --border: rgba(0,200,255,0.15);
+    --glow: 0 0 20px rgba(0,200,255,0.3);
+    --glow2: 0 0 20px rgba(255,107,0,0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* GRID BACKGROUND */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,200,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,200,255,0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(6,10,15,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    height: 68px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    width: 38px; height: 38px;
+    background: linear-gradient(135deg, var(--accent), #0066aa);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    color: var(--bg);
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+
+  .logo-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 3px;
+    color: var(--accent);
+  }
+
+  .logo-text span { color: var(--accent2); }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color .2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-cta {
+    background: transparent;
+    border: 1.5px solid var(--accent);
+    color: var(--accent);
+    padding: 9px 24px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .2s;
+  }
+
+  .nav-cta:hover {
+    background: var(--accent);
+    color: var(--bg);
+    box-shadow: var(--glow);
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,200,255,0.08);
+    border: 1px solid rgba(0,200,255,0.25);
+    padding: 6px 18px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 32px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent3);
+    border-radius: 50%;
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.6); }
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 10vw, 140px);
+    line-height: 0.9;
+    letter-spacing: 4px;
+    color: #fff;
+    margin-bottom: 8px;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+
+  .hero h1 .accent-word {
+    color: var(--accent);
+    display: block;
+  }
+
+  .hero h1 .accent2-word {
+    color: var(--accent2);
+    display: block;
+  }
+
+  .hero-sub {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 6px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .hero-desc {
+    max-width: 620px;
+    font-size: 19px;
+    color: var(--text);
+    opacity: 0.8;
+    margin-bottom: 48px;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeUp 0.7s 0.4s ease both;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg);
+    padding: 14px 36px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all .2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: #fff;
+    box-shadow: var(--glow);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    padding: 14px 36px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all .2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Hero stats */
+  .hero-stats {
+    display: flex;
+    gap: 60px;
+    margin-top: 72px;
+    animation: fadeUp 0.7s 0.5s ease both;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* Hero blueprints SVG decoration */
+  .hero-bg-art {
+    position: absolute;
+    right: -100px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 600px;
+    opacity: 0.04;
+    pointer-events: none;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── SECTION COMMON ─── */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 100px 48px;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .section-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(42px, 6vw, 80px);
+    letter-spacing: 3px;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .section-title .highlight { color: var(--accent2); }
+
+  .section-desc {
+    max-width: 580px;
+    margin: 16px auto 0;
+    color: var(--muted);
+    font-size: 16px;
+  }
+
+  .divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    margin: 16px auto 0;
+  }
+
+  /* ─── WHAT WE OFFER ─── */
+  .offer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .offer-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 36px 28px;
+    position: relative;
+    transition: all 0.3s;
+    overflow: hidden;
+  }
+
+  .offer-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .offer-card:hover::before { transform: scaleX(1); }
+  .offer-card:hover {
+    border-color: rgba(0,200,255,0.35);
+    box-shadow: var(--glow);
+    transform: translateY(-4px);
+  }
+
+  .offer-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .offer-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .offer-desc {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ─── COURSES ─── */
+  #courses { background: var(--bg2); }
+
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 28px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .course-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .course-card:hover {
+    border-color: rgba(0,200,255,0.4);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), var(--glow);
+  }
+
+  .course-header {
+    padding: 28px 28px 20px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .course-header.orange { border-bottom-color: rgba(255,107,0,0.2); }
+
+  .course-cat {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .course-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 2px;
+    color: #fff;
+    line-height: 1.1;
+  }
+
+  .course-badge {
+    position: absolute;
+    top: 24px; right: 24px;
+    background: rgba(0,200,255,0.1);
+    border: 1px solid rgba(0,200,255,0.3);
+    color: var(--accent);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    letter-spacing: 1px;
+  }
+
+  .course-badge.adv {
+    background: rgba(255,107,0,0.1);
+    border-color: rgba(255,107,0,0.3);
+    color: var(--accent2);
+  }
+
+  .course-badge.soon {
+    background: rgba(0,255,136,0.1);
+    border-color: rgba(0,255,136,0.3);
+    color: var(--accent3);
+    animation: pulse 2s infinite;
+  }
+
+  .course-body {
+    padding: 20px 28px 28px;
+  }
+
+  .course-modules {
+    list-style: none;
+    margin-bottom: 20px;
+  }
+
+  .course-modules li {
+    font-size: 14px;
+    color: var(--muted);
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .course-modules li::before {
+    content: '▸';
+    color: var(--accent);
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+
+  .course-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .course-hrs {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: var(--accent3);
+  }
+
+  .course-mode {
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+    text-transform: uppercase;
+  }
+
+  .enroll-btn {
+    background: none;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    padding: 7px 18px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .2s;
+    width: 100%;
+    margin-top: 16px;
+  }
+
+  .enroll-btn:hover {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  .enroll-btn.orange {
+    border-color: var(--accent2);
+    color: var(--accent2);
+  }
+
+  .enroll-btn.orange:hover {
+    background: var(--accent2);
+    color: var(--bg);
+  }
+
+  /* COMING SOON CARD */
+  .course-card.coming-soon {
+    opacity: 0.7;
+    border-color: rgba(0,255,136,0.2);
+  }
+
+  .course-card.coming-soon .course-name { color: var(--accent3); }
+
+  /* ─── PACKAGES ─── */
+  .packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .pkg-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 40px 32px;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s;
+    overflow: hidden;
+  }
+
+  .pkg-card.featured {
+    border-color: var(--accent);
+    box-shadow: var(--glow);
+  }
+
+  .pkg-card.featured::after {
+    content: 'MOST POPULAR';
+    position: absolute;
+    top: 20px; right: -28px;
+    background: var(--accent);
+    color: var(--bg);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    padding: 4px 36px;
+    transform: rotate(45deg);
+  }
+
+  .pkg-card:hover:not(.featured) {
+    border-color: rgba(0,200,255,0.3);
+    transform: translateY(-6px);
+  }
+
+  .pkg-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .pkg-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 3px;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .pkg-mode {
+    display: inline-block;
+    background: rgba(0,200,255,0.08);
+    border: 1px solid rgba(0,200,255,0.2);
+    color: var(--accent);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    padding: 4px 14px;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
+
+  .pkg-features {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 32px;
+  }
+
+  .pkg-features li {
+    padding: 9px 0;
+    font-size: 15px;
+    color: var(--text);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .pkg-features li::before {
+    content: '✦';
+    color: var(--accent);
+    font-size: 10px;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+
+  .pkg-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--accent);
+    border: none;
+    color: var(--bg);
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .2s;
+  }
+
+  .pkg-btn:hover { background: #fff; }
+
+  .pkg-btn.outline {
+    background: transparent;
+    border: 1.5px solid var(--accent);
+    color: var(--accent);
+  }
+
+  .pkg-btn.outline:hover {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  /* ─── MODE BANNER ─── */
+  .mode-banner {
+    background: linear-gradient(135deg, rgba(0,200,255,0.05), rgba(255,107,0,0.05));
+    border: 1px solid var(--border);
+    padding: 48px;
+    max-width: 900px;
+    margin: 0 auto 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .mode-item {
+    text-align: center;
+  }
+
+  .mode-icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+
+  .mode-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .mode-desc {
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  /* ─── CONTACT ─── */
+  #contact { background: var(--bg2); }
+
+  .contact-wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 52px 48px;
+  }
+
+  .form-group {
+    margin-bottom: 24px;
+  }
+
+  .form-label {
+    display: block;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .form-input {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 12px 16px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    outline: none;
+    transition: border-color .2s;
+  }
+
+  .form-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(0,200,255,0.08);
+  }
+
+  select.form-input {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='%235a7a8a' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 10px;
+    cursor: pointer;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .form-submit {
+    width: 100%;
+    padding: 15px;
+    background: var(--accent);
+    border: none;
+    color: var(--bg);
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .2s;
+    margin-top: 8px;
+  }
+
+  .form-submit:hover {
+    background: #fff;
+    box-shadow: var(--glow);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 48px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 4px;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .footer-logo span { color: var(--accent2); }
+
+  .footer-tagline {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .footer-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 1px;
+    transition: color .2s;
+  }
+
+  .footer-links a:hover { color: var(--accent); }
+
+  .footer-copy {
+    font-size: 12px;
+    color: var(--muted);
+    opacity: 0.6;
+    font-family: 'Share Tech Mono', monospace;
+  }
+
+  /* ─── COURSE PAIR LAYOUT ─── */
+  .course-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-bottom: 28px;
+  }
+
+  @media (max-width: 700px) {
+    .course-pair { grid-template-columns: 1fr; }
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    section { padding: 70px 20px; }
+    .hero { padding: 100px 20px 60px; }
+    .form-row { grid-template-columns: 1fr; }
+    .mode-banner { grid-template-columns: 1fr; padding: 32px 24px; }
+    .contact-wrapper { padding: 32px 24px; }
+  }
+
+  /* SEPARATOR */
+  .sep {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0 auto;
+  }
+
+  /* SCROLL ANIMATIONS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* TICKER */
+  .ticker-wrap {
+    background: rgba(0,200,255,0.06);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    padding: 12px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .ticker {
+    display: flex;
+    gap: 80px;
+    animation: ticker 30s linear infinite;
+    white-space: nowrap;
+  }
+
+  .ticker-item {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .ticker-item span {
+    color: var(--accent);
+    margin-right: 12px;
+  }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* COURSE SECTION LABEL */
+  .courses-section-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 4px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .courses-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .courses-section-label.orange { color: var(--accent2); }
+
+  .max-w {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* TOPOLOGY PROMO */
+  .topology-promo {
+    background: linear-gradient(135deg, rgba(0,255,136,0.04), rgba(0,200,255,0.04));
+    border: 1px dashed rgba(0,255,136,0.3);
+    padding: 48px;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .topology-promo::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 50% 50%, rgba(0,255,136,0.05) 0%, transparent 70%);
+  }
+
+  .topology-promo-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    letter-spacing: 4px;
+    color: var(--accent3);
+    margin-bottom: 12px;
+  }
+
+  .topology-promo-text {
+    color: var(--muted);
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+
+  .notify-btn {
+    background: none;
+    border: 1.5px solid var(--accent3);
+    color: var(--accent3);
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 2px;
+    padding: 10px 28px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .2s;
+  }
+
+  .notify-btn:hover {
+    background: var(--accent3);
+    color: var(--bg);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">NL</div>
+    <div class="logo-text">NISH<span>LAB</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#offer">Services</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Enroll Now</button>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker-wrap" style="margin-top:68px;">
+  <div class="ticker">
+    <div class="ticker-item"><span>◈</span>CAD · CAM · CAE</div>
+    <div class="ticker-item"><span>◈</span>SOLIDWORKS · CATIA · AUTOCAD</div>
+    <div class="ticker-item"><span>◈</span>ANSYS WORKBENCH · FLUENT · MAXWELL</div>
+    <div class="ticker-item"><span>◈</span>REAL INDUSTRIAL PROJECTS</div>
+    <div class="ticker-item"><span>◈</span>JOB PLACEMENT SUPPORT</div>
+    <div class="ticker-item"><span>◈</span>LIVE ONLINE CLASSES</div>
+    <!-- duplicate for seamless loop -->
+    <div class="ticker-item"><span>◈</span>CAD · CAM · CAE</div>
+    <div class="ticker-item"><span>◈</span>SOLIDWORKS · CATIA · AUTOCAD</div>
+    <div class="ticker-item"><span>◈</span>ANSYS WORKBENCH · FLUENT · MAXWELL</div>
+    <div class="ticker-item"><span>◈</span>REAL INDUSTRIAL PROJECTS</div>
+    <div class="ticker-item"><span>◈</span>JOB PLACEMENT SUPPORT</div>
+    <div class="ticker-item"><span>◈</span>LIVE ONLINE CLASSES</div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- Blueprint SVG BG Art -->
+  <svg class="hero-bg-art" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="200" cy="200" r="180" stroke="#00c8ff" stroke-width="0.5" stroke-dasharray="4 8"/>
+    <circle cx="200" cy="200" r="120" stroke="#00c8ff" stroke-width="0.5"/>
+    <circle cx="200" cy="200" r="60" stroke="#00c8ff" stroke-width="0.5" stroke-dasharray="2 4"/>
+    <line x1="0" y1="200" x2="400" y2="200" stroke="#00c8ff" stroke-width="0.5"/>
+    <line x1="200" y1="0" x2="200" y2="400" stroke="#00c8ff" stroke-width="0.5"/>
+    <line x1="0" y1="0" x2="400" y2="400" stroke="#00c8ff" stroke-width="0.3" stroke-dasharray="4 8"/>
+    <line x1="400" y1="0" x2="0" y2="400" stroke="#00c8ff" stroke-width="0.3" stroke-dasharray="4 8"/>
+    <rect x="100" y="100" width="200" height="200" stroke="#00c8ff" stroke-width="0.5" stroke-dasharray="6 6"/>
+    <polygon points="200,40 360,140 360,260 200,360 40,260 40,140" stroke="#00c8ff" stroke-width="0.5" fill="none"/>
+  </svg>
+
+  <div class="hero-badge">⬡ Real Industrial Training • Certified Programs</div>
+
+  <h1>
+    <span>NISHLAB</span>
+    <span class="accent-word">CREATIONS</span>
+  </h1>
+
+  <p class="hero-sub">CAD &nbsp;|&nbsp; CAM &nbsp;|&nbsp; CAE &nbsp;|&nbsp; Engineering Training Institute</p>
+
+  <p class="hero-desc">
+    Industry-grade technical training in design, simulation, and manufacturing software.
+    Fast-track your engineering career with real project experience.
+  </p>
+
+  <div class="hero-btns">
+    <a href="#courses" class="btn-primary">Explore Courses</a>
+    <a href="#packages" class="btn-secondary">View Packages</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">15+</div>
+      <div class="stat-label">Courses</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">36–120</div>
+      <div class="stat-label">Hrs per Course</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Live Sessions</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Growth Potential</div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- WHAT WE OFFER -->
+<section id="offer">
+  <div class="section-header reveal">
+    <span class="section-tag">// What We Offer</span>
+    <h2 class="section-title">ENGINEERING YOUR <span class="highlight">FUTURE</span></h2>
+    <div class="divider"></div>
+    <p class="section-desc">Complete skill-building ecosystem for engineers — from fundamentals to advanced industrial tools.</p>
+  </div>
+
+  <div class="offer-grid">
+    <div class="offer-card reveal">
+      <span class="offer-icon">🎯</span>
+      <div class="offer-title">Fast-Track Courses</div>
+      <p class="offer-desc">Structured programs from basic computing to advanced engineering simulations — designed for rapid skill acquisition with real industrial context.</p>
+    </div>
+    <div class="offer-card reveal">
+      <span class="offer-icon">🏭</span>
+      <div class="offer-title">Real Industrial Projects</div>
+      <p class="offer-desc">Work on live, industry-grade CAD/CAM/CAE projects. Build a portfolio that speaks directly to employers in engineering and manufacturing.</p>
+    </div>
+    <div class="offer-card reveal">
+      <span class="offer-icon">💼</span>
+      <div class="offer-title">Internship & Job Placement</div>
+      <p class="offer-desc">Dedicated placement support to connect you with the right companies. We work with you until you land the role you've trained for.</p>
+    </div>
+    <div class="offer-card reveal">
+      <span class="offer-icon">📄</span>
+      <div class="offer-title">Portfolio & Resume Building</div>
+      <p class="offer-desc">Get professional help crafting a technical portfolio and engineering resume that showcases your skills and project work.</p>
+    </div>
+    <div class="offer-card reveal">
+      <span class="offer-icon">💻</span>
+      <div class="offer-title">Laptop Support</div>
+      <p class="offer-desc">Guidance on software installation, system configuration, and hardware recommendations to ensure you can run CAD/CAE tools smoothly.</p>
+    </div>
+    <div class="offer-card reveal">
+      <span class="offer-icon">🎓</span>
+      <div class="offer-title">Live Online Learning</div>
+      <p class="offer-desc">All individual courses are delivered online + live online. Combined packages use hybrid mode — the best of both digital and hands-on learning.</p>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- COURSES -->
+<section id="courses">
+  <div class="section-header reveal">
+    <span class="section-tag">// Course Catalog</span>
+    <h2 class="section-title">MASTER THE <span class="highlight">TOOLS</span></h2>
+    <div class="divider"></div>
+    <p class="section-desc">Every course is available as Essential (36 hrs) or Advanced (80–120 hrs). Choose your entry point.</p>
+  </div>
+
+  <!-- MODE BANNER -->
+  <div class="mode-banner reveal">
+    <div class="mode-item">
+      <div class="mode-icon">🖥️</div>
+      <div class="mode-title" style="color:var(--accent)">Online + Live Online</div>
+      <div class="mode-desc">All Essential & Advanced individual courses — attend live sessions from anywhere with direct instructor access.</div>
+    </div>
+    <div class="mode-item">
+      <div class="mode-icon">🔀</div>
+      <div class="mode-title" style="color:var(--accent2)">Hybrid Mode</div>
+      <div class="mode-desc">All combined packages — blend of live online instruction and hands-on practical sessions for deeper engagement.</div>
+    </div>
+  </div>
+
+  <div class="max-w">
+
+    <!-- FUNDAMENTALS -->
+    <div class="courses-section-label reveal">Foundation Tracks</div>
+    <div class="course-pair reveal">
+      <!-- Basic Computer -->
+      <div class="course-card">
+        <div class="course-header">
+          <div class="course-cat">Foundation</div>
+          <div class="course-name">Basic Computer Fundamentals</div>
+          <div class="course-badge">Essential</div>
+        </div>
+        <div class="course-body">
+          <ul class="course-modules">
+            <li>Operating system & file management</li>
+            <li>Internet, browsers & productivity tools</li>
+            <li>Intro to MS Office suite</li>
+            <li>Keyboard shortcuts & efficiency tips</li>
+            <li>Computer hardware essentials</li>
+          </ul>
+          <div class="course-footer">
+            <div class="course-hrs">⏱ 36 Hours</div>
+            <div class="course-mode">Online + Live</div>
+          </div>
+          <button class="enroll-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Enroll →</button>
+        </div>
+      </div>
+
+      <!-- Advanced Excel -->
+      <div class="course-card">
+        <div class="course-header">
+          <div class="course-cat">MS Office</div>
+          <div class="course-name">Advanced Excel with User Forms</div>
+          <div class="course-badge adv">Advanced</div>
+        </div>
+        <div class="course-body">
+          <ul class="course-modules">
+            <li>Advanced formulas, VLOOKUP, INDEX/MATCH</li>
+            <li>Pivot tables & dynamic dashboards</li>
+            <li>VBA macros & automation scripting</li>
+            <li>User form design & development</li>
+            <li>Full MS Office integration</li>
+          </ul>
+          <div class="course-footer">
+            <div class="course-hrs">⏱ 80–120 Hours</div>
+            <div class="course-mode">Online + Live</div>
+          </div>
+          <button class="enroll-btn orange" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Enroll →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- AUTOCAD -->
+    <div class="courses-section-label reveal">2D / 3D Drafting</div>
+    <div class="course-pair reveal">
+      <div class="course-card">
+        <div class="course-header">
+          <div class="course-cat">AutoCAD</div>
+          <div class="course-name">AutoCAD Essential</div>
+          <div class="course-badge">Essential</div>
+        </div>
+        <div class="course-body">
+          <ul class="course-modules">
+            <li>Interface navigation & workspace setup</li>
+            <li>2D drawing tools & precision drafting</li>
+            <li>Layers, blocks & attributes</li>
+            <li>Dimensioning & annotation standards</li>
+            <li>Plotting & output management</li>
+          </ul>
+          <div class="course-footer">
+            <div class="course-hrs">⏱ 36 Hours</div>
+            <div class="course-mode">Online + Live</div>
+          </div>
+          <button class="enroll-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Enroll →</button>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-header">
+          <div class="course-cat">AutoCAD</div>
+          <div class="course-name">Advanced AutoCAD 2D & 3D</div>
+          <div class="course-badge adv">Advanced</div>
+        </div>
+        <div class="course-body">
+          <ul class="course-modules">
+            <li>Advanced 2D detailing & standards</li>
+            <li>3D solid & surface modeling</li>
+            <li>Dynamic blocks & parametric drawing</li>
+            <li>Sheet sets & project management</li>
+            <li>Industry project workflows</li>
+          </ul>
+          <div class="course-footer">
+            <div class="course-hrs">⏱ 80–120 Hours</div>
+            <div class="course-mode">Online + Live</div>
+          </div>
+          <button class="enroll-btn orange" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Enroll →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SOLIDWORKS -->
+    <div class="courses-section-label reveal">3D CAD Design</div>
+    <div class="course-pair reveal">
+      <div class="course-card">
+        <div class="course-header">
+          <div class="course-cat">SolidWorks</div>
+          <div class="course-name">SolidWorks Essential</div>
+          <div class="course-badge">Essential</div>
+        </div>
+        <div class="course-body">
+          <ul class="course-modules">
+            <li>Sketch-based parametric modeling</li>
+            <li>Part design & feature management</li>
+            <li>Assembly creation & mating</li>
+            <li>Engineering drawings & GD&T</li>
+            <li>Basic simulation intro</li>
+          </ul>
+          <div class="course-footer">
+            <div class="course-hrs">⏱ 36 Hours</div>
+            <div class="course-mode">Online + Live</div>
+          </div>
+          <button class="enroll-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Enroll →</button>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-header">
+          <div class="course-cat">SolidWorks</div>
+          <div class="course-name">Advanced SolidWorks with Automations</div>
+          <div class="course-badge adv">Advanced</div>
+        </div>
+        <div class="course-body">
+          <ul class="course-modules">
+            <li>Advanced surfacing & complex forms</li>
+            <li>Design tables & configurations</li>
+            <li>SolidWorks API & macros</li>
+            <li>DriveWorksXpress automation</li>
+            <li>Full product design projects</li>
+          </ul>
+          <div class="course-footer">
+            <div class="course-hrs">⏱ 80–120 Hours</div>
+            <div class="course-mode">Online + Live</div>
+          </div>
+          <button class="enroll-btn orange" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Enroll →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATIA -->
+    <div class="courses-section-label reveal">Aerospace & Automotive CAD</div>
+    <div class="course-pair reveal">
+      <div class="course-card">
+        <div class="course-header">
+          <div class="course-cat">CATIA</div>
+          <div class="course-name">CATIA Essential</div>
+          <div class="course-badge">Essential</div>
+        </div>
+        <div class="course-body">
+          <ul class="course-modules">
+            <li>CATIA V5/V6 interface fundamentals</li>
+            <li>Part design workbench</li>
+            <li>Assembly design & constraints</li>
+            <li>Drafting & 2D output</li>
+            <li>Surface modeling basics</li>
+          </ul>
+          <div class="course-footer">
+            <div class="course-hrs">⏱ 36 Hours</div>
+            <div class="course-mode">Online + Live</div>
+          </div>
+          <button class="enroll-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Enroll →</button>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-header">
+          <div class="course-cat">CATIA</div>
+          <div class="course-name">Advanced CATIA with Electrical</div>
+          <div class="course-badge adv">Advanced</div>
+        </div>
+        <div class="course-body">
+          <ul class="course-modules">
+            <li>Generative shape design (GSD)</li>
+            <li>Electrical harness workbench</li>
+            <li>Electrical library & component design</li>
+            <li>Wire routing & schematic tools</li>
+            <li>Automotive/aerospace project work</li>
+          </ul>
+          <div class="course-footer">
+            <div class="course-hrs">⏱ 80–120 Hours</div>
+            <div class="course-mode">Online + Live</div>
+          </div>
+          <button class="enroll-btn orange" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Enroll →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ANSYS -->
+    <div class="courses-section-label reveal">Simulation & Analysis (CAE)</div>
+    <div class="course-pair reveal">
+      <div class="course-card">
+        <div class="course-header">
+          <div class="course-cat">ANSYS</div>
+          <div class="course-name">ANSYS Workbench Essentials</div>
+          <div class="course-badge">Essential</div>
+        </div>
+        <div class="course-body">
+          <ul class="course-modules">
+            <li>FEA fundamentals & meshing</li>
+            <li>Static structural analysis</li>
+            <li>Modal & thermal analysis</li>
+            <li>Results interpretation & reporting</li>
+            <li>Geometry import & cleanup</li>
+          </ul>
+          <div class="course-footer">
+            <div class="course-hrs">⏱ 36 Hours</div>
+            <div class="course-mode">Online + Live</div>
+          </div>
+          <button class="enroll-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Enroll →</button>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-header">
+          <div class="course-cat">ANSYS</div>
+          <div class="course-name">Advanced ANSYS Suite</div>
+          <div class="course-badge adv">Advanced</div>
+        </div>
+        <div class="course-body">
+          <ul class="course-modules">
+            <li>APDL scripting & parametric analysis</li>
+            <li>Fluent — CFD & fluid dynamics</li>
+            <li>Maxwell — electromagnetic simulation</li>
+            <li>HFSS — high-frequency EM design</li>
+            <li>Icepak — electronics thermal (Ice Pack)</li>
+          </ul>
+          <div class="course-footer">
+            <div class="course-hrs">⏱ 80–120 Hours</div>
+            <div class="course-mode">Online + Live</div>
+          </div>
+          <button class="enroll-btn orange" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Enroll →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOPOLOGY COMING SOON -->
+    <div class="courses-section-label reveal" style="color:var(--accent3)">Coming Soon</div>
+    <div class="topology-promo reveal">
+      <div class="topology-promo-title">TOPOLOGY OPTIMIZATION</div>
+      <p class="topology-promo-text">
+        The next frontier in generative design. Lightweight, structurally optimal parts using simulation-driven topology tools. <br>
+        <strong style="color:var(--accent3)">Section launching soon — stay tuned.</strong>
+      </p>
+      <button class="notify-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Notify Me When Live</button>
+    </div>
+
+  </div><!-- /max-w -->
+</section>
+
+<div class="sep"></div>
+
+<!-- PACKAGES -->
+<section id="packages">
+  <div class="section-header reveal">
+    <span class="section-tag">// Combined Packages</span>
+    <h2 class="section-title">LAUNCH YOUR <span class="highlight">CAREER</span></h2>
+    <div class="divider"></div>
+    <p class="section-desc">Combined packages bundle courses, mentorship, placement support, and real-world project experience into one complete program.</p>
+  </div>
+
+  <div class="packages-grid">
+    <!-- Starter -->
+    <div class="pkg-card reveal">
+      <span class="pkg-icon">🚀</span>
+      <div class="pkg-title">Starter Package</div>
+      <div class="pkg-mode">Hybrid Mode</div>
+      <ul class="pkg-features">
+        <li>2 Essential courses of your choice</li>
+        <li>Portfolio generation (2 projects)</li>
+        <li>Resume building support</li>
+        <li>Laptop setup & software guidance</li>
+        <li>Career counseling session</li>
+      </ul>
+      <button class="pkg-btn outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
+    </div>
+
+    <!-- Pro (featured) -->
+    <div class="pkg-card featured reveal">
+      <span class="pkg-icon">⚡</span>
+      <div class="pkg-title">Pro Package</div>
+      <div class="pkg-mode" style="border-color:rgba(255,107,0,0.3);color:var(--accent2)">Hybrid Mode</div>
+      <ul class="pkg-features">
+        <li>1 Essential + 1 Advanced course</li>
+        <li>Internship placement assistance</li>
+        <li>Portfolio generation (4 projects)</li>
+        <li>Professional resume building</li>
+        <li>Laptop support & config</li>
+        <li>LinkedIn profile optimization</li>
+        <li>Mock interview preparation</li>
+      </ul>
+      <button class="pkg-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Enroll Now</button>
+    </div>
+
+    <!-- Elite -->
+    <div class="pkg-card reveal">
+      <span class="pkg-icon">🏆</span>
+      <div class="pkg-title">Elite Package</div>
+      <div class="pkg-mode">Hybrid Mode</div>
+      <ul class="pkg-features">
+        <li>Full multi-software advanced track</li>
+        <li>Job placement support (dedicated)</li>
+        <li>Full portfolio (6+ real projects)</li>
+        <li>Professional resume + cover letters</li>
+        <li>Laptop support included</li>
+        <li>1-on-1 mentorship sessions</li>
+        <li>Industry connections & referrals</li>
+        <li>Topology module (when live)</li>
+      </ul>
+      <button class="pkg-btn outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Us</button>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header reveal">
+    <span class="section-tag">// Get In Touch</span>
+    <h2 class="section-title">START YOUR <span class="highlight">JOURNEY</span></h2>
+    <div class="divider"></div>
+    <p class="section-desc">Fill in the form below and our team will reach out with the right course or package for your goals.</p>
+  </div>
+
+  <div class="contact-wrapper reveal">
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input class="form-input" type="text" placeholder="Your full name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Phone / WhatsApp</label>
+        <input class="form-input" type="text" placeholder="+91 XXXXX XXXXX">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Email Address</label>
+      <input class="form-input" type="email" placeholder="your@email.com">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Course Interest</label>
+        <select class="form-input">
+          <option value="">Select a course...</option>
+          <optgroup label="Foundation">
+            <option>Basic Computer Fundamentals</option>
+            <option>Advanced Excel with User Forms</option>
+          </optgroup>
+          <optgroup label="AutoCAD">
+            <option>AutoCAD Essential</option>
+            <option>Advanced AutoCAD 2D & 3D</option>
+          </optgroup>
+          <optgroup label="SolidWorks">
+            <option>SolidWorks Essential</option>
+            <option>Advanced SolidWorks with Automations</option>
+          </optgroup>
+          <optgroup label="CATIA">
+            <option>CATIA Essential</option>
+            <option>Advanced CATIA with Electrical</option>
+          </optgroup>
+          <optgroup label="ANSYS">
+            <option>ANSYS Workbench Essentials</option>
+            <option>Advanced ANSYS Suite</option>
+          </optgroup>
+          <optgroup label="Packages">
+            <option>Starter Package</option>
+            <option>Pro Package</option>
+            <option>Elite Package</option>
+          </optgroup>
+          <option>Topology (Notify Me)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Your Background</label>
+        <select class="form-input">
+          <option value="">Select...</option>
+          <option>Student (Engineering)</option>
+          <option>Fresh Graduate</option>
+          <option>Working Professional</option>
+          <option>Career Switcher</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Message (optional)</label>
+      <textarea class="form-input" rows="4" placeholder="Tell us your goals or any questions you have..." style="resize:vertical;"></textarea>
+    </div>
+    <button class="form-submit" onclick="this.textContent='✔ Message Sent!'; this.style.background='var(--accent3)'; this.style.color='var(--bg)';">Send Message →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">NISH<span>LAB</span> CREATIONS</div>
+  <div class="footer-tagline">CAD · CAM · CAE · Real Industrial Training</div>
+  <div class="footer-links">
+    <a href="#offer">What We Offer</a>
+    <a href="#courses">Courses</a>
+    <a href="#packages">Packages</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact">Enroll Now</a>
+  </div>
+  <div class="footer-copy">© 2025 NishLab Creations — All Rights Reserved</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  reveals.forEach(el => obs.observe(el));
+
+  // Stagger children in grids
+  document.querySelectorAll('.offer-grid, .packages-grid').forEach(grid => {
+    grid.querySelectorAll('.offer-card, .pkg-card').forEach((card, i) => {
+      card.style.transitionDelay = (i * 0.08) + 's';
+    });
+  });
+</script>
+
+</body>
+</html>
